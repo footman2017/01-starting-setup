@@ -28,7 +28,11 @@ const App = () => {
     },
   ];
 
-  return <Expenses data={expenses} />;
+  return (
+    <div>
+      <Expenses data={expenses} />
+    </div>
+  );
 };
 
 export default App;
