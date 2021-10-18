@@ -1,8 +1,11 @@
 import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
+import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
+import { useState } from "react";
 
 const Expenses = (props) => {
+  const [stateFilteredValue, setstateFilteredValue] = useState("");
   const listExpenseItem = props.data.map((item) => (
     <ExpenseItem
       key={item.id}
@@ -12,7 +15,17 @@ const Expenses = (props) => {
     />
   ));
 
-  return <Card className="expenses">{listExpenseItem}</Card>;
+  const filterValueHendler = (filteredValue) => {
+    setstateFilteredValue(filteredValue);
+    console.log(stateFilteredValue);
+  };
+
+  return (
+    <Card className="expenses">
+      <ExpensesFilter getFilterValue={filterValueHendler} />
+      {listExpenseItem}
+    </Card>
+  );
 };
 
 export default Expenses;
