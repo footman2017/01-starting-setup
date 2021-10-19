@@ -17,7 +17,8 @@ const Expenses = (props) => {
 
   const filterValueHendler = (filteredValue) => {
     setstateFilteredValue(filteredValue);
-    console.log(stateFilteredValue);
+    props.onFilterChange(filteredValue);
+    // console.log(stateFilteredValue);
   };
 
   return (
