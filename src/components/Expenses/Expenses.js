@@ -6,7 +6,12 @@ import { useState } from "react";
 
 const Expenses = (props) => {
   const [stateFilteredValue, setstateFilteredValue] = useState("2020");
-  const listExpenseItem = props.data.map((item) => (
+
+  const filteredData = props.data.filter(
+    (item) => item.date.getFullYear().toString() === stateFilteredValue
+  );
+
+  const listExpenseItem = filteredData.map((item) => (
     <ExpenseItem
       key={item.id}
       title={item.title}
@@ -17,8 +22,6 @@ const Expenses = (props) => {
 
   const filterValueHendler = (filteredValue) => {
     setstateFilteredValue(filteredValue);
-    props.onFilterChange(filteredValue);
-    // console.log(stateFilteredValue);
   };
 
   return (

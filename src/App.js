@@ -32,29 +32,17 @@ const INITIAL_DUMMY = [
 
 const App = () => {
   const [stateExpenses, setstateExpenses] = useState(INITIAL_DUMMY);
-  const [stateFilteredExpenses, setstateFilteredExpenses] = useState(stateExpenses);
 
   const addExpenseHandler = (expense) => {
     setstateExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
-    setstateFilteredExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
-  };
-
-  const filterChangeHendler = (yaerValue) => {
-    const yearConverted = new Date(yaerValue);
-    const filteredExpenses = stateExpenses.filter(
-      (expense) => expense.date.getFullYear() === yearConverted.getFullYear()
-    );
-    setstateFilteredExpenses(filteredExpenses);
   };
 
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses onFilterChange={filterChangeHendler} data={stateFilteredExpenses} />
+      <Expenses data={stateExpenses} />
     </div>
   );
 };
