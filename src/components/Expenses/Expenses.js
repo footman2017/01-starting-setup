@@ -5,7 +5,7 @@ import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 import { useState } from "react";
 
 const Expenses = (props) => {
-  const [stateFilteredValue, setstateFilteredValue] = useState("");
+  const [stateFilteredValue, setstateFilteredValue] = useState("2020");
   const listExpenseItem = props.data.map((item) => (
     <ExpenseItem
       key={item.id}
@@ -22,7 +22,10 @@ const Expenses = (props) => {
 
   return (
     <Card className="expenses">
-      <ExpensesFilter getFilterValue={filterValueHendler} />
+      <ExpensesFilter
+        selectedValue={stateFilteredValue}
+        getFilterValue={filterValueHendler}
+      />
       {listExpenseItem}
     </Card>
   );
